@@ -6,12 +6,12 @@ import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
 
 type PostStatsProps = {
-    post?: Models.Document;
+    post: Models.Document;
     userId: string;
 }
 
 const PostStats = ({ post, userId}: PostStatsProps) => {
-  const likesList = post?.likes.map((user: Models.Document) => user.$id);
+  const likesList = post.likes.map((user: Models.Document) => user.$id);
 
   const [likes, setLikes] = useState(likesList);
   const [isSaved, setIsSaved] = useState(false);
@@ -52,7 +52,7 @@ const PostStats = ({ post, userId}: PostStatsProps) => {
         setIsSaved(false);
         return deleteSavedPost(savedPostRecord.$id);
     } else {
-        savePost({ postId : post?.$id || '', userId: userId})
+        savePost({ postId : post.$id || '', userId: userId})
         setIsSaved(true);
     }
   }
